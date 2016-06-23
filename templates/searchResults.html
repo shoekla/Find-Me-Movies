@@ -1,0 +1,63 @@
+
+<!-- light-blue - v3.3.0 - 2016-03-08 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Find Me Movies</title>
+
+        <link href="{{ url_for('static', filename='css/application.min.css')}}" rel="stylesheet">
+
+    <link rel="shortcut icon" href="img/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta charset="utf-8">
+    <script>
+        /* yeah we need this empty stylesheet here. It's cool chrome & chromium fix
+           chrome fix https://code.google.com/p/chromium/issues/detail?id=167083
+                      https://code.google.com/p/chromium/issues/detail?id=332189
+        */
+        $("#loa").click(function(){
+            $(".results").hide(); 
+            $(".loading").show();          
+        }
+    </script>
+</head>
+<body>
+    <div class="logo">
+        <h4><a href="/">Find Me <strong>Movies</strong></a></h4>
+    </div>
+    <header class="page-header">
+            <div class="navbar">
+            
+                <form id="search-form" class="navbar-form pull-right" role="search" action="/search" method="POST">
+                    <input type="search" class="form-control search-query" placeholder="Search For Any Movie, (TV Shows Coming Soon)" name="search">
+                </form>
+               
+            </div>
+        </header> 
+        <br/><br/>
+       
+        <center> <div class="results"><h2>Search Results for "{{search}}"</h2><br/>
+            {% for name in names %}
+            
+                <a href="/{{name}}/" style="color:white" id="loa">
+                     <div class="col-xs-3">
+        <img src="{{imgs[names.index(name)]}}"/>
+       <h5 style="color:white">{{name}}</h5>
+        </div>
+                </a>
+           
+             {% endfor %}
+             </div>
+             <div class="loading" style="display: none">
+             <img src="{{ url_for('static', filename='loads.gif')}}"/>
+             <p style="color:white">Shouldn't take more than a minute!</p>
+             </div>
+        </center>
+      
+
+
+</body>
+</html>
