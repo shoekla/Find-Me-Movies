@@ -1,9 +1,9 @@
 
-# Find Me Comics
-#Summary
+# Find-Me-Movies
 
-Find Me Comics, is the third project in the "Find Me" Series. This web application lets users search for comics, and read them just like a comic book using bootstrap and turn.js. As for the back-end it uses flask and web scraping/crawling. 
-Video Url: https://www.youtube.com/watch?v=UcMTPKB7n-Q&index=5&list=PLG3CZEAwI9EqGgyXbrilpWo7WQsF-e5Kg
+#Summary
+The next in line in the "Find Me" series is Find Me Movies, a web application that finds torrents, trailers, ratings, streams, and related movies for your favorite movies. 
+Video Demo: https://www.youtube.com/watch?v=0hMp-U38UKo&index=3&list=PLG3CZEAwI9EqGgyXbrilpWo7WQsF-e5Kg
 
 #Installation
 Installation is pretty simple.<br/>
@@ -14,4 +14,4 @@ Installation is pretty simple.<br/>
 
 #Launching the App
 
-Launching the app is just a click away, just click the file titled "Find Me Comics" (.bat for windows, .sh for mac)<br/>
+Launching the app is just a click away, just click the file titled "Find Me Movies" (.bat for windows, .sh for mac)<br/>
