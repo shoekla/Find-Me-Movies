@@ -15,6 +15,7 @@ def HomeMovie():
 
 @app.route('/<movie>/')
 def tester(movie):
+	movie = movie.replace("-"," ")
 	return render_template("test.html",movie=movie)
 @app.route('/search',methods=['POST'])
 def SearchMovie(names = [],links = [],search = None,imgs=[]):
@@ -49,7 +50,7 @@ def hello(movie,emb = None, more=None,torr = None,imdb=None,imL = None,rotLink= 
 	more = scrape.getMovieSearch(movie)
 	print "Movie Seqrch Done"
 	torr = ""
-	torr = scrape.getTorrent(movie)
+	#torr = scrape.getTorrent(movie)
 	print "Torrent Done"
 	imdb = ""
 	imdb = scrape.getRating(movie)
@@ -70,7 +71,7 @@ def hello(movie,emb = None, more=None,torr = None,imdb=None,imL = None,rotLink= 
 	sol = scrape.getSolarMovie(movie)
 	streams = []
 	print "sol "+sol
-	streams = scrape.getStreamLink(sol)
+	streams = scrape.getSolarMovieStreams(sol)
 	relNames= []
 	relNames = scrape.getRelatedMoives(movie)
 	relLinks = []
@@ -81,7 +82,7 @@ def hello(movie,emb = None, more=None,torr = None,imdb=None,imL = None,rotLink= 
 		bef = ""
 		bef = link.replace(" ","-")
 		print bef
-		relLinks.append("http://127.0.0.1:5000/"+bef+"/")
+		relLinks.append(bef)
 	imgRel = []
 	for name in relNames:
 		imgRel.append(scrape.crawlImg(name))
