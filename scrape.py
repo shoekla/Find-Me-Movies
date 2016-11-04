@@ -180,8 +180,8 @@ def getSolarSearch(movie):
 	movie = movie.strip()
 	movie = movie.replace(" ","%20")
 
-	url = "http://www.thesolarmovie.me/?s="+movie+""
-	print url
+	url = "http://www.thesolarmovie.ws/?s="+movie+""
+	#print url
 	source_code=requests.get(url)
 	plain_text=source_code.text
 	soup=BeautifulSoup(plain_text)
@@ -191,18 +191,19 @@ def getSolarSearch(movie):
 		href_test=str(href)
 		if href_test == "/":
 			arr = []
-		if href_test == "#" or "http://www.thesolarmovie.me/page/" in href_test:
+		if href_test == "#" or "http://www.thesolarmovie.ws/page/" in href_test:
 			break
-		if "http://www.thesolarmovie.me/free/" not in href_test and "http://www.thesolarmovie.me/tag/" not in href_test and "http://www.thesolarmovie.me/" != href_test and "http://www.thesolarmovie.me//wp-login.php?" not in href_test:
-			arr.append(href_test)
+		if "http://www.thesolarmovie.ws/free/" not in href_test and "http://www.thesolarmovie.ws/tag/" not in href_test and "http://www.thesolarmovie.ws/" != href_test and "http://www.thesolarmovie.ws//wp-login.php?" not in href_test and "http://www.thesolarmovie.ws/free/tv-series/" not in href_test:
+			if "http://www.thesolarmovie.ws/" in href_test:
+				arr.append(href_test)
 	res = deleteDuplicates(arr)
-	for i in res:
-		print "Solar Link: "+i
-	print "Search Done -------------------------------------------------------------------------------------------"
+	#for i in res:
+	#	print "Solar Link: "+i
+	#print "Search Done -------------------------------------------------------------------------------------------"
 	return res
 
 def getNameFromLink(url):
-	index = url.find(".me/")
+	index = url.find(".ws/")
 	indexEnd = url.find("/",index+4)
 	almost = url[index+4:indexEnd]
 	res = almost.replace("-"," ")
@@ -211,11 +212,11 @@ def getNameFromLink(url):
 
 
 def getSolarMovie(movie):
-	print "Movie in Method: "+movie
+	#print "Movie in Method: "+movie
 	sol = movie
 	sol = sol.strip()
 	sol = sol.replace(" ","-")
-	url = "http://www.thesolarmovie.me/"+sol+"/"
+	url = "http://www.thesolarmovie.ws/"+sol+"/"
 	return url
 
 
@@ -228,11 +229,18 @@ def getSolarMovieStreams(url):
 	for link in soup.findAll('a'):
 		href=link.get('href')
 		href_test=str(href)
-		if "http://www.thesolarmovie.me/go.php?url=http" in href_test:
-			arr.append(getSecondStream(href_test))
+		if "url=http" in href_test:
+			streamLink = href_test[href_test.find("url=http")+4:]
+			if "www.thesolarmovie.ws" not in streamLink:
+				arr.append(streamLink)
 	print "Deleete Dues"
 	res = deleteDuplicates(arr)
 	return res
+"""a = getSolarMovieStreams(getSolarMovie("star trek beyond 2016"))
+for i in a:
+	print i
+print str(len(a))+" Stream Links Found!"
+"""
 def getSecondStream(url):
 	source_code=requests.get(url)
 	plain_text=source_code.text
@@ -240,7 +248,7 @@ def getSecondStream(url):
 	for link in soup.findAll('a'):
 		href=link.get('href')
 		href_test=str(href)
-		if "http://www.thesolarmovie.me/" not in href_test and href_test != "http://www.mozilla.com/en-US/firefox/fx/" and href_test != "http://www.google.com/chrome" and "http://www.apple.com/safari/download/" != href_test and href_test != "http://www.opera.com/download/" and href_test != "/" and href_test != "#" and "//go.ad2up.com" not in href_test:
+		if "http://www.thesolarmovie.ws/" not in href_test and href_test != "http://www.mozilla.com/en-US/firefox/fx/" and href_test != "http://www.google.com/chrome" and "http://www.apple.com/safari/download/" != href_test and href_test != "http://www.opera.com/download/" and href_test != "/" and href_test != "#" and "//go.ad2up.com" not in href_test:
 			return href_test
 def getStreamLink(url):
 	print "Entered With URL: "+url
@@ -253,7 +261,7 @@ def getStreamLink(url):
 		href=link.get('href')
 		href_test=str(href)
 		if "/link/show" in href_test:
-			add = "http://www.thesolarmovie.me/"+href_test
+			add = "http://www.thesolarmovie.ws/"+href_test
 			ar = getContinueLink(add)
 			if ar != None:
 				arr.append(ar)
