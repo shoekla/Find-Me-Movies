@@ -7,7 +7,7 @@ Video Demo: https://www.youtube.com/watch?v=0hMp-U38UKo&index=3&list=PLG3CZEAwI9
 
 #Installation
 
-Installation is pretty simple.
+Installation is pretty simple.<br/>
 (Windows Only) 1. Download Python 2.7<br/>
 2. Download Zip<br/>
 3. Proceed to Launch Application<br/>
