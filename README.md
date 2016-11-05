@@ -14,4 +14,4 @@ Installation is pretty simple.<br/>
 
 #Launching the App
 
-Launching the app is just a click away, just click the file titled "Find Me Comics" (.bat for windows, .sh for mac)
+Launching the app is just a click away, just click the file titled "Find Me Movies" (.bat for windows, .sh for mac)
